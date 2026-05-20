@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Robux - Roblox</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           ОРИГИНАЛЬНЫЙ ДИЗАЙН (ФОН И ЦВЕТА)
+           ========================================= */
+        :root {
+            --bg-body: #F2F4F5;
+            --bg-surface: #FFFFFF;
+            --text-primary: #191B1D;
+            --text-secondary: #393B3D;
+            --text-muted: #B8B8B8;
+            --border-color: #E3E3E3;
+            --btn-hover: #E3E6E8;
+        }
+
+        body {
+            margin: 0; padding: 0; background-color: var(--bg-body);
+            color: var(--text-primary); font-family: 'Inter', "Helvetica Neue", Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        * { box-sizing: border-box; }
+
+        .robux-icon { width: 24px; height: 24px; object-fit: contain; vertical-align: middle; }
+        .robux-icon-sm { width: 16px; height: 16px; object-fit: contain; vertical-align: middle; }
+
+        /* ВЕРХНЯЯ НАВИГАЦИЯ */
+        .rbx-header {
+            background-color: var(--bg-surface); height: 40px; padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .rbx-header-left { display: flex; align-items: center; gap: 15px; }
+        .rbx-icon-menu { width: 24px; height: 24px; cursor: pointer; fill: var(--text-primary); }
+        .rbx-logo { font-size: 22px; font-weight: 900; letter-spacing: -0.5px; color: var(--text-primary); text-decoration: none; }
+        
+        .rbx-header-center { flex-grow: 1; max-width: 500px; margin: 0 20px; position: relative; }
+        .rbx-search-input {
+            width: 100%; padding: 6px 12px 6px 35px; border-radius: 8px;
+            border: 1px solid var(--border-color); background-color: var(--bg-surface);
+            font-family: inherit; font-size: 15px; color: var(--text-primary); outline: none;
+        }
+        .rbx-search-input:focus { border-color: var(--text-muted); }
+        .rbx-icon-search { position: absolute; left: 10px; top: 7px; width: 18px; height: 18px; fill: var(--text-muted); }
+
+        .rbx-header-right { display: flex; align-items: center; gap: 15px; }
+        .rbx-header-action { cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 8px; transition: 0.2s; }
+        .rbx-header-action:hover { background-color: var(--btn-hover); }
+        .rbx-balance { font-weight: 700; font-size: 15px; }
+        .rbx-settings-icon { width: 24px; height: 24px; fill: var(--text-primary); cursor: pointer; }
+
+        /* ОСНОВНОЙ ЛЕЙАУТ */
+        .rbx-container { display: flex; max-width: 1200px; margin: 0 auto; padding-top: 15px; }
+        
+        /* БОКОВОЕ МЕНЮ */
+        .rbx-sidebar { width: 180px; flex-shrink: 0; padding-right: 20px; }
+        @media (max-width: 900px) { .rbx-sidebar { display: none; } }
+        .rbx-menu-item {
+            display: flex; align-items: center; gap: 12px; padding: 10px;
+            border-radius: 8px; color: var(--text-secondary); font-weight: 600; font-size: 15px; cursor: pointer;
+        }
+        .rbx-menu-item:hover { background-color: var(--btn-hover); color: var(--text-primary); }
+        .rbx-menu-icon { width: 24px; height: 24px; fill: var(--text-secondary); }
+        .rbx-menu-item:hover .rbx-menu-icon { fill: var(--text-primary); }
+
+        /* =========================================
+           ФОН В КЛЕТОЧКУ С БОЛЬШОЙ НАДПИСЬЮ
+           ========================================= */
+        .rbx-content { flex-grow: 1; padding-bottom: 50px; }
+        
+        .buy-robux-header {
+            /* Создаем темный фон в шахматную клетку средствами CSS */
+            background-color: #232527;
+            background-image: 
+                linear-gradient(45deg, #191B1D 25%, transparent 25%, transparent 75%, #191B1D 75%, #191B1D),
+                linear-gradient(45deg, #191B1D 25%, transparent 25%, transparent 75%, #191B1D 75%, #191B1D);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            padding: 40px 30px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .buy-robux-header h1 {
+            color: #FFFFFF;
+            font-size: 42px;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -1px;
+        }
+
+        .page-subtitle { 
+            font-size: 16px; color: var(--text-secondary); 
+            margin: 0 0 24px 10px; font-weight: 400; line-height: 1.5;
+        }
+
+        /* Премиум баннер */
+        .premium-banner-bg {
+            background: linear-gradient(135deg, #232527 0%, #191B1D 100%);
+            border-radius: 12px; padding: 20px 30px; margin-bottom: 24px; color: white;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden;
+        }
+        .premium-btn { 
+            background-color: white; color: #191B1D; border: none; padding: 12px 24px; 
+            border-radius: 8px; font-weight: 700; font-size: 16px; cursor: pointer; z-index: 1;
+            transition: 0.2s;
+        }
+        .premium-btn:hover { background-color: #f2f4f5; transform: scale(1.02); }
+
+        .section-title { font-size: 24px; font-weight: 800; margin-bottom: 20px; color: var(--text-primary); padding-left: 10px;}
+
+        /* Контейнеры карточек */
+        .robux-packages-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;
+        }
+        
+        .robux-package-card {
+            background-color: var(--bg-surface); border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 24px; text-align: left; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04); cursor: pointer; transition: 0.2s ease-in-out;
+            position: relative; overflow: hidden;
+        }
+        .robux-package-card:hover { 
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08); 
+            border-color: var(--text-muted); 
+            transform: translateY(-2px);
+        }
+        
+        .package-amount-wrap { display: flex; align-items: center; gap: 12px; }
+        .package-amount { font-size: 32px; font-weight: 800; color: var(--text-primary); }
+        
+        .package-price-btn {
+            background-color: var(--bg-surface); border: 1px solid var(--text-muted);
+            padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 16px;
+            color: var(--text-primary); cursor: pointer; transition: 0.2s;
+        }
+        .robux-package-card:hover .package-price-btn { 
+            border-color: var(--text-primary); background-color: var(--text-primary); color: white; 
+        }
+
+        /* =========================================
+           ОКНО ОТПРАВКИ (ПРАНК)
+           ========================================= */
+        .modal-overlay { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center; z-index: 1000; 
+            backdrop-filter: blur(2px);
+        }
+        .modal { 
+            background-color: var(--bg-surface); color: var(--text-primary); border-radius: 12px; 
+            width: 90%; max-width: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+            padding: 24px; text-align: center; 
+        }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .modal-title { font-weight: 700; display: flex; align-items: center; gap: 8px; font-size: 18px; }
+        .modal-balance { font-weight: 700; display: flex; align-items: center; gap: 4px; font-size: 16px; }
+        .close-btn { border: none; background: none; font-size: 26px; color: var(--text-muted); cursor: pointer; padding: 0; }
+        .close-btn:hover { color: var(--text-primary); }
+
+        .input-box { width: 100%; padding: 12px; border: 1px solid var(--text-muted); border-radius: 8px; font-size: 16px; outline: none; font-weight: 600; font-family: inherit; }
+        .input-box:focus { border-color: var(--text-primary); }
+        .search-status { font-size: 12px; font-weight: 600; margin-top: 8px; min-height: 15px; text-align: left; }
+
+        .primary-btn { 
+            background-color: var(--text-primary); color: white; border: none; width: 100%; padding: 12px; 
+            border-radius: 8px; font-weight: 700; font-size: 16px; cursor: pointer; margin-top: 15px; font-family: inherit; transition: 0.2s;
+        }
+        .primary-btn:hover { background-color: #000000; }
+        .primary-btn:disabled { background-color: var(--border-color); color: var(--text-muted); cursor: not-allowed; }
+
+        .user-profile { margin-bottom: 20px; }
+        .avatar-container { width: 80px; height: 80px; background-color: var(--bg-body); border-radius: 50%; margin: 0 auto 10px; overflow: hidden; border: 1px solid var(--border-color); }
+        .avatar-container img { width: 100%; height: 100%; object-fit: cover; display: none; }
+        .display-name { font-weight: 800; font-size: 18px; margin-bottom: 2px; }
+        .username-tag { color: var(--text-secondary); font-size: 13px; font-weight: 600; }
+
+        .amount-wrapper { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 25px 0; }
+        .amount-input { border: none; font-size: 46px; font-weight: 800; width: 200px; outline: none; padding: 0; background: transparent; font-family: inherit; text-align: center; }
+        
+        .preset-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 20px; }
+        .preset-btn { background-color: var(--bg-body); border: 1px solid var(--border-color); padding: 10px 0; border-radius: 6px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: inherit;}
+        .preset-btn:hover { border-color: var(--text-muted); }
+        
+        .spinner { border: 4px solid var(--bg-body); border-top: 4px solid var(--text-primary); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <script>
+        let myBalance = 2147483647; 
+        let accountName = "cherepokivan";
+        let targetUser = ""; 
+        let searchTimeout;
+    </script>
+
+    <header class="rbx-header">
+        <div class="rbx-header-left">
+            <svg class="rbx-icon-menu" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            <a href="#" class="rbx-logo">ROBLOX</a>
+        </div>
+        
+        <div class="rbx-header-center">
+            <svg class="rbx-icon-search" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" class="rbx-search-input" placeholder="Search for experiences, people, and more">
+        </div>
+
+        <div class="rbx-header-right">
+            <div class="rbx-header-action" onclick="openModal()" title="Buy Robux">
+                <img src="robux.png" class="robux-icon" alt="R$">
+                <span class="rbx-balance" id="nav-balance">0</span>
+            </div>
+            <svg class="rbx-settings-icon" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+        </div>
+    </header>
+
+    <div class="rbx-container">
+        
+        <aside class="rbx-sidebar">
+            <div class="rbx-menu-item" style="margin-bottom: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; overflow: hidden; border: 1px solid var(--border-color);">
+                    <img src="https://tr.rbxcdn.com/f9518844856f70c53d5a37f5b82a7a40/150/150/AvatarHeadshot/Png" alt="Avatar" style="width:100%;height:100%;">
+                </div>
+                <script>document.write(accountName);</script>
+            </div>
+            <div class="rbx-menu-item"><svg class="rbx-menu-icon" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> Home</div>
+            <div class="rbx-menu-item"><svg class="rbx-menu-icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> Profile</div>
+            <div class="rbx-menu-item"><svg class="rbx-menu-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg> Messages</div>
+            <div class="rbx-menu-item"><svg class="rbx-menu-icon" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> Friends</div>
+            <div class="rbx-menu-item"><svg class="rbx-menu-icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> Avatar</div>
+            
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 10px 0;">
+            <div class="rbx-menu-item" style="font-weight: 800; color: var(--text-primary);">Buy Robux</div>
+        </aside>
+
+        <main class="rbx-content">
+            
+            <div class="buy-robux-header">
+                <h1>Buy Robux</h1>
+            </div>
+            
+            <p class="page-subtitle">Robux allows you to purchase upgrades for your avatar or buy special abilities in experiences.</p>
+
+            <div class="premium-banner-bg">
+                <div style="z-index: 1;">
+                    <h2 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 800;">Get more Robux with Premium</h2>
+                    <p style="margin: 0; font-size: 14px; font-weight: 500; opacity: 0.9;">Subscribe to Premium and receive a monthly Robux stipend.</p>
+                </div>
+                <button class="premium-btn">Subscribe</button>
+            </div>
+
+            <h2 class="section-title">Robux Packages</h2>
+
+            <div class="robux-packages-grid">
+                <div class="robux-package-card">
+                    <div class="package-amount-wrap">
+                        <img src="robux.png" class="robux-icon" style="width:36px;height:36px;" alt="R$">
+                        <span class="package-amount">400</span>
+                    </div>
+                    <button class="package-price-btn">$ 4.99</button>
+                </div>
+                
+                <div class="robux-package-card">
+                    <div class="package-amount-wrap">
+                        <img src="robux.png" class="robux-icon" style="width:36px;height:36px;" alt="R$">
+                        <span class="package-amount">800</span>
+                    </div>
+                    <button class="package-price-btn">$ 9.99</button>
+                </div>
+                
+                <div class="robux-package-card">
+                    <div class="package-amount-wrap">
+                        <img src="robux.png" class="robux-icon" style="width:36px;height:36px;" alt="R$">
+                        <span class="package-amount">1,700</span>
+                    </div>
+                    <button class="package-price-btn">$ 19.99</button>
+                </div>
+                
+                <div class="robux-package-card">
+                    <div class="package-amount-wrap">
+                        <img src="robux.png" class="robux-icon" style="width:36px;height:36px;" alt="R$">
+                        <span class="package-amount">4,500</span>
+                    </div>
+                    <button class="package-price-btn">$ 49.99</button>
+                </div>
+                
+                <div class="robux-package-card">
+                    <div class="package-amount-wrap">
+                        <img src="robux.png" class="robux-icon" style="width:36px;height:36px;" alt="R$">
+                        <span class="package-amount">10,000</span>
+                    </div>
+                    <button class="package-price-btn">$ 99.99</button>
+                </div>
+                
+                <div class="robux-package-card">
+                    <div class="package-amount-wrap">
+                        <img src="robux.png" class="robux-icon" style="width:36px;height:36px;" alt="R$">
+                        <span class="package-amount">22,500</span>
+                    </div>
+                    <button class="package-price-btn">$ 199.99</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title"><img src="robux.png" class="robux-icon" alt=""> Send Robux</div>
+                <div class="modal-balance"><img src="robux.png" class="robux-icon-sm" alt=""> <span id="modal-balance">0</span></div>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+
+            <div id="step-1">
+                <input type="text" id="username-input" class="input-box" placeholder="Search username..." oninput="handleInputSearch()">
+                <div id="search-status" class="search-status"></div>
+                <button class="primary-btn" id="search-btn" disabled onclick="goToStep2()">Next</button>
+            </div>
+
+            <div id="step-2" style="display: none;">
+                <div class="user-profile">
+                    <div class="avatar-container"><img id="real-avatar" src="" alt="Avatar"></div>
+                    <div class="display-name" id="display-name-text">Name</div>
+                    <div class="username-tag" id="username-tag-text">@name</div>
+                </div>
+
+                <div class="amount-wrapper">
+                    <img src="robux.png" class="robux-icon" style="width: 40px; height: 40px;" alt="R$">
+                    <input type="text" id="amount-input" class="amount-input" value="50,000" placeholder="0">
+                </div>
+
+                <div class="preset-grid">
+                    <button class="preset-btn" onclick="setAmount(25)"><img src="robux.png" class="robux-icon-sm" alt=""> 25</button>
+                    <button class="preset-btn" onclick="setAmount(50)"><img src="robux.png" class="robux-icon-sm" alt=""> 50</button>
+                    <button class="preset-btn" onclick="setAmount(100)"><img src="robux.png" class="robux-icon-sm" alt=""> 100</button>
+                    <button class="preset-btn" onclick="setAmount(200)"><img src="robux.png" class="robux-icon-sm" alt=""> 200</button>
+                </div>
+
+                <button class="primary-btn" onclick="sendRobux()">Next</button>
+                <div style="font-size: 11px; color: var(--text-muted); margin-top: 15px; line-height: 1.4; font-weight: 600;">
+                    Robux are sent instantly with no fees.<br>Note: Robux delivery within 3 days max.
+                </div>
+            </div>
+            
+            <div id="step-loading" style="display: none;">
+                <div class="spinner"></div>
+                <div id="loading-text" style="font-weight: 700; margin-top: 10px;">Sending...</div>
+            </div>
+
+            <div id="step-3" style="display: none;">
+                <div style="width: 60px; height: 60px; background: #00b06f; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; margin: 0 auto 15px;">✓</div>
+                <h3 style="margin: 0 0 10px 0;">Success!</h3>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 14px; font-weight: 600;" id="success-text">Sent 500 Robux</p>
+                <button class="primary-btn" style="background-color: var(--bg-body); color: var(--text-primary);" onclick="closeModal()">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function formatNum(num) { return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+        
+        function updateBalances() { 
+            document.getElementById('nav-balance').innerText = formatNum(myBalance);
+            document.getElementById('modal-balance').innerText = formatNum(myBalance); 
+        }
+        updateBalances();
+
+        function showStep(stepId) {
+            ['step-1', 'step-2', 'step-loading', 'step-3'].forEach(id => {
+                document.getElementById(id).style.display = (id === stepId) ? 'block' : 'none';
+            });
+        }
+
+        function openModal() {
+            document.getElementById('modal').style.display = 'flex';
+            document.getElementById('username-input').value = '';
+            document.getElementById('search-status').innerText = '';
+            document.getElementById('search-btn').disabled = true;
+            showStep('step-1');
+        }
+
+        function closeModal() { document.getElementById('modal').style.display = 'none'; }
+
+        const amountInput = document.getElementById('amount-input');
+        amountInput.addEventListener('input', function() {
+            let value = this.value.replace(/[^0-9]/g, '');
+            if(value === '') { this.value = ''; return; }
+            this.value = parseInt(value, 10).toLocaleString('en-US');
+        });
+
+        function setAmount(val) { document.getElementById('amount-input').value = formatNum(val); }
+        function getRawAmount() { return parseInt(document.getElementById('amount-input').value.replace(/,/g, ''), 10); }
+
+        async function handleInputSearch() {
+            const input = document.getElementById('username-input').value.trim();
+            const statusEl = document.getElementById('search-status');
+            const btn = document.getElementById('search-btn');
+            
+            clearTimeout(searchTimeout);
+            btn.disabled = true;
+
+            if (input.length < 3) { statusEl.innerText = ""; return; }
+
+            statusEl.innerText = "Searching...";
+            statusEl.style.color = "var(--text-muted)";
+
+            searchTimeout = setTimeout(async () => {
+                targetUser = input;
+                const proxyList = [
+                    'https://users.roproxy.com/v1/usernames/users',
+                    'https://corsproxy.io/?https://users.roblox.com/v1/usernames/users'
+                ];
+                
+                let successData = null;
+
+                for (let proxyUrl of proxyList) {
+                    try {
+                        let res = await fetch(proxyUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ usernames: [input], excludeBannedUsers: true })
+                        });
+                        let data = await res.json();
+                        if (data.data && data.data.length > 0) { successData = data.data[0]; break; }
+                    } catch (e) {}
+                }
+
+                if (successData) {
+                    targetUser = successData.name;
+                    document.getElementById('display-name-text').innerText = successData.displayName;
+                    document.getElementById('username-tag-text').innerText = "@" + successData.name;
+                    try {
+                        let avatarRes = await fetch(`https://thumbnails.roproxy.com/v1/users/avatar-headshot?userIds=${successData.id}&size=150x150&format=Png&isCircular=true`);
+                        let avatarData = await avatarRes.json();
+                        if (avatarData.data && avatarData.data.length > 0) {
+                            document.getElementById('real-avatar').src = avatarData.data[0].imageUrl;
+                        }
+                    } catch(e) {}
+                } else {
+                    document.getElementById('real-avatar').src = "https://tr.rbxcdn.com/f9518844856f70c53d5a37f5b82a7a40/150/150/AvatarHeadshot/Png"; 
+                    document.getElementById('display-name-text').innerText = input;
+                    document.getElementById('username-tag-text').innerText = "@" + input.toLowerCase();
+                }
+
+                document.getElementById('real-avatar').style.display = "block";
+                statusEl.innerText = "✓ User found";
+                statusEl.style.color = "#00b06f"; 
+                btn.disabled = false; 
+            }, 800);
+        }
+
+        function goToStep2() { showStep('step-2'); }
+
+        function sendRobux() {
+            let amount = getRawAmount(); 
+            if (isNaN(amount) || amount <= 0) return alert("Please enter a valid amount.");
+            if (amount > myBalance) return alert("Not enough Robux!");
+
+            document.getElementById('loading-text').innerHTML = "Sending " + formatNum(amount) + " Robux<br><span style='font-size:13px;color:var(--text-muted);font-weight:600;'>" + targetUser + "</span>";
+            showStep('step-loading');
+
+            setTimeout(() => {
+                myBalance -= amount;
+                updateBalances();
+                document.getElementById('success-text').innerText = "Sent " + formatNum(amount) + " Robux to @" + targetUser;
+                showStep('step-3');
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
