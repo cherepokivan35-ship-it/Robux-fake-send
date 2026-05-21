@@ -73,31 +73,19 @@
         .rbx-menu-item:hover .rbx-menu-icon { fill: var(--text-primary); }
 
         /* =========================================
-           СВЕТЛЫЙ БАННЕР В КЛЕТОЧКУ С НАДПИСЬЮ
+           ОСНОВНОЙ КОНТЕНТ (КАРТОЧКИ И БАННЕР)
            ========================================= */
         .rbx-content { flex-grow: 1; padding-bottom: 50px; }
         
-        /* Светлые шахматные клеточки из оригинала */
-        .buy-robux-header {
-            background-color: #AFB4B8;
-            background-image: 
-                linear-gradient(45deg, #A1A6AA 25%, transparent 25%, transparent 75%, #A1A6AA 75%, #A1A6AA),
-                linear-gradient(45deg, #A1A6AA 25%, transparent 25%, transparent 75%, #A1A6AA 75%, #A1A6AA);
-            background-size: 28px 28px;
-            background-position: 0 0, 14px 14px;
-            padding: 45px 30px;
-            border-radius: 12px;
+        /* Класс для твоего нового баннера-картинки */
+        .buy-robux-banner {
             margin-bottom: 24px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            width: 100%;
         }
-
-        /* Большая белая надпись в баннере */
-        .buy-robux-header h1 {
-            color: #FFFFFF;
-            font-size: 40px;
-            font-weight: 800;
-            margin: 0;
-            letter-spacing: -0.5px;
+        .buy-robux-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .section-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; color: var(--text-primary); padding-left: 10px;}
@@ -180,6 +168,7 @@
 <body>
 
     <script>
+        // Баланс 2 миллиарда
         let myBalance = 2147483647; 
         let accountName = "cherepokivan";
         let targetUser = ""; 
@@ -209,7 +198,6 @@
     </header>
 
     <div class="rbx-container">
-        
         <aside class="rbx-sidebar">
             <div class="rbx-menu-item" style="margin-bottom: 10px;">
                 <div style="width: 32px; height: 32px; border-radius: 50%; overflow: hidden; border: 1px solid var(--border-color);">
@@ -228,9 +216,8 @@
         </aside>
 
         <main class="rbx-content">
-            
-            <div class="buy-robux-header">
-                <h1>Enjoy up to 25% more Robux</h1>
+            <div class="buy-robux-banner">
+                <img src="13941.png" alt="Buy Robux Header Banner">
             </div>
 
             <h2 class="section-title">Robux Packages</h2>
