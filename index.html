@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* =========================================
-           ОРИГИНАЛЬНЫЙ ДИЗАЙН (ФОН И ЦВЕТА)
+           ОРИГИНАЛЬНЫЙ СВЕТЛЫЙ ДИЗАЙН
            ========================================= */
         :root {
             --bg-body: #F2F4F5;
@@ -35,19 +35,21 @@
             background-color: var(--bg-surface); height: 40px; padding: 0 20px;
             display: flex; justify-content: space-between; align-items: center;
             border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
         }
         .rbx-header-left { display: flex; align-items: center; gap: 15px; }
         .rbx-icon-menu { width: 24px; height: 24px; cursor: pointer; fill: var(--text-primary); }
-        .rbx-logo { font-size: 22px; font-weight: 900; letter-spacing: -0.5px; color: var(--text-primary); text-decoration: none; }
+        
+        /* Логотип картинкой */
+        .rbx-logo-link { display: flex; align-items: center; text-decoration: none; }
+        .rbx-logo-img { height: 26px; width: auto; object-fit: contain; }
         
         .rbx-header-center { flex-grow: 1; max-width: 500px; margin: 0 20px; position: relative; }
         .rbx-search-input {
             width: 100%; padding: 6px 12px 6px 35px; border-radius: 8px;
-            border: 1px solid var(--border-color); background-color: var(--bg-surface);
+            border: 1px solid var(--border-color); background-color: var(--bg-body);
             font-family: inherit; font-size: 15px; color: var(--text-primary); outline: none;
         }
-        .rbx-search-input:focus { border-color: var(--text-muted); }
+        .rbx-search-input:focus { border-color: var(--text-muted); background-color: var(--bg-surface); }
         .rbx-icon-search { position: absolute; left: 10px; top: 7px; width: 18px; height: 18px; fill: var(--text-muted); }
 
         .rbx-header-right { display: flex; align-items: center; gap: 15px; }
@@ -71,54 +73,36 @@
         .rbx-menu-item:hover .rbx-menu-icon { fill: var(--text-primary); }
 
         /* =========================================
-           ФОН В КЛЕТОЧКУ С БОЛЬШОЙ НАДПИСЬЮ
+           СВЕТЛЫЙ БАННЕР В КЛЕТОЧКУ С НАДПИСЬЮ
            ========================================= */
         .rbx-content { flex-grow: 1; padding-bottom: 50px; }
         
+        /* Светлые шахматные клеточки из оригинала */
         .buy-robux-header {
-            /* Создаем темный фон в шахматную клетку средствами CSS */
-            background-color: #232527;
+            background-color: #AFB4B8;
             background-image: 
-                linear-gradient(45deg, #191B1D 25%, transparent 25%, transparent 75%, #191B1D 75%, #191B1D),
-                linear-gradient(45deg, #191B1D 25%, transparent 25%, transparent 75%, #191B1D 75%, #191B1D);
-            background-size: 30px 30px;
-            background-position: 0 0, 15px 15px;
-            padding: 40px 30px;
+                linear-gradient(45deg, #A1A6AA 25%, transparent 25%, transparent 75%, #A1A6AA 75%, #A1A6AA),
+                linear-gradient(45deg, #A1A6AA 25%, transparent 25%, transparent 75%, #A1A6AA 75%, #A1A6AA);
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
+            padding: 45px 30px;
             border-radius: 12px;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
+        /* Большая белая надпись в баннере */
         .buy-robux-header h1 {
             color: #FFFFFF;
-            font-size: 42px;
+            font-size: 40px;
             font-weight: 800;
             margin: 0;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
         }
 
-        .page-subtitle { 
-            font-size: 16px; color: var(--text-secondary); 
-            margin: 0 0 24px 10px; font-weight: 400; line-height: 1.5;
-        }
+        .section-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; color: var(--text-primary); padding-left: 10px;}
 
-        /* Премиум баннер */
-        .premium-banner-bg {
-            background: linear-gradient(135deg, #232527 0%, #191B1D 100%);
-            border-radius: 12px; padding: 20px 30px; margin-bottom: 24px; color: white;
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden;
-        }
-        .premium-btn { 
-            background-color: white; color: #191B1D; border: none; padding: 12px 24px; 
-            border-radius: 8px; font-weight: 700; font-size: 16px; cursor: pointer; z-index: 1;
-            transition: 0.2s;
-        }
-        .premium-btn:hover { background-color: #f2f4f5; transform: scale(1.02); }
-
-        .section-title { font-size: 24px; font-weight: 800; margin-bottom: 20px; color: var(--text-primary); padding-left: 10px;}
-
-        /* Контейнеры карточек */
+        /* Сетка карточек */
         .robux-packages-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;
         }
@@ -126,13 +110,12 @@
         .robux-package-card {
             background-color: var(--bg-surface); border: 1px solid var(--border-color);
             border-radius: 12px; padding: 24px; text-align: left; display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.04); cursor: pointer; transition: 0.2s ease-in-out;
-            position: relative; overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03); cursor: pointer; transition: 0.15s ease-in-out;
         }
         .robux-package-card:hover { 
-            box-shadow: 0 6px 16px rgba(0,0,0,0.08); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06); 
             border-color: var(--text-muted); 
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
         
         .package-amount-wrap { display: flex; align-items: center; gap: 12px; }
@@ -141,24 +124,24 @@
         .package-price-btn {
             background-color: var(--bg-surface); border: 1px solid var(--text-muted);
             padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 16px;
-            color: var(--text-primary); cursor: pointer; transition: 0.2s;
+            color: var(--text-primary); cursor: pointer; transition: 0.15s;
         }
         .robux-package-card:hover .package-price-btn { 
             border-color: var(--text-primary); background-color: var(--text-primary); color: white; 
         }
 
         /* =========================================
-           ОКНО ОТПРАВКИ (ПРАНК)
+           ОКНО ПРАНКА (ОТПРАВКА РОБУКСОВ)
            ========================================= */
         .modal-overlay { 
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center; z-index: 1000; 
-            backdrop-filter: blur(2px);
+            background: rgba(0, 0, 0, 0.4); justify-content: center; align-items: center; z-index: 1000; 
+            backdrop-filter: blur(1px);
         }
         .modal { 
             background-color: var(--bg-surface); color: var(--text-primary); border-radius: 12px; 
-            width: 90%; max-width: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
-            padding: 24px; text-align: center; 
+            width: 90%; max-width: 380px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); 
+            padding: 24px; text-align: center; border: 1px solid var(--border-color);
         }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .modal-title { font-weight: 700; display: flex; align-items: center; gap: 8px; font-size: 18px; }
@@ -166,8 +149,8 @@
         .close-btn { border: none; background: none; font-size: 26px; color: var(--text-muted); cursor: pointer; padding: 0; }
         .close-btn:hover { color: var(--text-primary); }
 
-        .input-box { width: 100%; padding: 12px; border: 1px solid var(--text-muted); border-radius: 8px; font-size: 16px; outline: none; font-weight: 600; font-family: inherit; }
-        .input-box:focus { border-color: var(--text-primary); }
+        .input-box { width: 100%; padding: 12px; border: 1px solid var(--text-muted); border-radius: 8px; font-size: 16px; outline: none; font-weight: 600; font-family: inherit; background-color: var(--bg-body); }
+        .input-box:focus { border-color: var(--text-primary); background-color: var(--bg-surface); }
         .search-status { font-size: 12px; font-weight: 600; margin-top: 8px; min-height: 15px; text-align: left; }
 
         .primary-btn { 
@@ -184,11 +167,11 @@
         .username-tag { color: var(--text-secondary); font-size: 13px; font-weight: 600; }
 
         .amount-wrapper { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 25px 0; }
-        .amount-input { border: none; font-size: 46px; font-weight: 800; width: 200px; outline: none; padding: 0; background: transparent; font-family: inherit; text-align: center; }
+        .amount-input { border: none; font-size: 46px; font-weight: 800; width: 200px; outline: none; padding: 0; background: transparent; font-family: inherit; text-align: center; color: var(--text-primary); }
         
         .preset-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 20px; }
-        .preset-btn { background-color: var(--bg-body); border: 1px solid var(--border-color); padding: 10px 0; border-radius: 6px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: inherit;}
-        .preset-btn:hover { border-color: var(--text-muted); }
+        .preset-btn { background-color: var(--bg-body); border: 1px solid var(--border-color); padding: 10px 0; border-radius: 6px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: inherit; color: var(--text-primary); }
+        .preset-btn:hover { border-color: var(--text-muted); background-color: var(--btn-hover); }
         
         .spinner { border: 4px solid var(--bg-body); border-top: 4px solid var(--text-primary); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -206,7 +189,9 @@
     <header class="rbx-header">
         <div class="rbx-header-left">
             <svg class="rbx-icon-menu" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
-            <a href="#" class="rbx-logo">ROBLOX</a>
+            <a href="#" class="rbx-logo-link">
+                <img src="logo.png" alt="Roblox" class="rbx-logo-img">
+            </a>
         </div>
         
         <div class="rbx-header-center">
@@ -245,17 +230,7 @@
         <main class="rbx-content">
             
             <div class="buy-robux-header">
-                <h1>Buy Robux</h1>
-            </div>
-            
-            <p class="page-subtitle">Robux allows you to purchase upgrades for your avatar or buy special abilities in experiences.</p>
-
-            <div class="premium-banner-bg">
-                <div style="z-index: 1;">
-                    <h2 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 800;">Get more Robux with Premium</h2>
-                    <p style="margin: 0; font-size: 14px; font-weight: 500; opacity: 0.9;">Subscribe to Premium and receive a monthly Robux stipend.</p>
-                </div>
-                <button class="premium-btn">Subscribe</button>
+                <h1>Enjoy up to 25% more Robux</h1>
             </div>
 
             <h2 class="section-title">Robux Packages</h2>
